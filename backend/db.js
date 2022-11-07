@@ -1,6 +1,6 @@
 const mongoose  = require('mongoose')
 
-const URIString = 'mongodb://localhost:27017'
+const URIString = 'mongodb://localhost:27017/iNoteBook'
 
 const connectToLocalHost = ()=> {
     mongoose.connect(URIString,()=>{

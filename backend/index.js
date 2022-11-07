@@ -1,12 +1,20 @@
 const connectToLocalHost = require('./db')
+
 const express = require('express')
 const app = express()
-const port = 3000
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
-  
-  app.listen(port, () => {
-    console.log(`App listening on port http://localhost:${port}`)
-  })
+const port = 5000
+
+app.use(express.json())
+
+//linking the route 
+app.get('/',(req,res)=>{
+  res.send("yes")
+  console.log(req.body,res)
+})
+app.use('/api/notes', require('./routes/notes'))
+app.use('/api/auth', require('./routes/auth'))
+
+app.listen(port, () => {
+  console.log(`App listening on port http://localhost:${port}`)
+})
 connectToLocalHost();
