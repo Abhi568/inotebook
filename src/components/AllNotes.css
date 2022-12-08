@@ -1,0 +1,16 @@
+.all-notes .container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    border:1px solid gray;
+    background-color: antiquewhite;
+} 
+ .all-notes .container img{
+    border:1px solid red;
+    margin:2rem;
+    height: 20rem;
+    width: 50%;
+    
+}

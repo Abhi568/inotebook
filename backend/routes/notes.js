@@ -3,12 +3,12 @@ const fetchUser = require("../middleware/fetchUser");
 const Notes = require("./../models/Notes");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const { update } = require("./../models/Notes");
 
 // 1) Route : Fetch all Notes for a user, Login Require
 
 router.get("/fetchallnotes", fetchUser, async (req, res) => {
     try {
+        console.log('id',req.user.id)
         const allNotes = await Notes.find({ user: req.user.id });
         res.json(allNotes);
     } catch (error) {

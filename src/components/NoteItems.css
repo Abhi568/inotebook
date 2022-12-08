@@ -1,0 +1,68 @@
+img {
+  height: 2rem;
+  width: 2rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+img:hover {
+  transition: all 0.4s ease-in-out;
+  background-color: rgb(177, 185, 182);
+}
+
+.cross-box,
+.check-box {
+  padding: 0.2rem !important;
+  border-radius: 50%;
+}
+.cross-box {
+  margin: 0rem 1rem;
+}
+.check-box {
+  background-color: #73aeeb;
+}
+.cross-box:hover {
+  background-color: rgb(246, 238, 225) !important;
+}
+.check-box:hover {
+  background-color: #60a1e6;
+}
+
+.alert-box {
+  width: 20rem;
+}
+.modal-dialog-centered {
+  justify-content: center;
+}
+.confirm-box-header {
+  border: 0px;
+}
+.confirm-box-close {
+  font-size: 0.7rem;
+  color: black;
+}
+.confirm-box-close:hover {
+  background-color: antiquewhite;
+  border-radius: 50%;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-end;
+  width: 30%;
+}
+.tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  position: absolute;
+  right: -0.5rem;
+  top: -0.5rem;
+  background: rgb(232, 227, 227);
+  padding: 0.2rem;
+  border-radius: 1rem;
+}
+.card-title {
+  max-width: 70%;
+}

@@ -42,6 +42,7 @@ route.post(
                     id: useCreated._id,
                 },
             };
+            console.log('id',data)
             var authToken = jwt.sign(data, SECRET_KEY);
             res.json({ authToken });
         } catch (error) {
@@ -70,28 +71,29 @@ route.post(
         const errors = validationResult(req);
         // if Error exists
         if (!errors.isEmpty()) {
-            res.status(400).send("Please Enter the Valid Crendentials");
+            res.status(400).json({"err":"Please Enter the Valid Crendentials"});
         }
         else{
         try {
             const { emailID, password } = req.body
             const userExists = await User.findOne({ emailID });
             if (!userExists) {
-                res.status(400).send("Please Enter the Valid Crendentials");
+                res.status(400).json({"err":"User does not exists"});
             } else {
                 isPasswordValid = await bcrypt.compare(password, userExists.password)
                 if (isPasswordValid) {
                     let data = {
                         user: {
-                            id: req.body._id,
+                            id: userExists._id,
                         },
                     };
+                    console.log('id',data)
                     var authToken = jwt.sign(data, SECRET_KEY);
                     res.json({ authToken });
                     console.log("Logged Successfully");
                 }
                 else {
-                    res.status(400).send("Please Enter the Valid Crendentials");
+                    res.status(400).json({"err":"Please Enter Valid Password"});
                 }
             }
         } catch (error) {

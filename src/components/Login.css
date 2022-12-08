@@ -1,0 +1,10 @@
+.alert-message{
+    z-index: 1000;
+    position:absolute;
+     top:2rem;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     transition: all 1000s ease-in-out;
+    
+}

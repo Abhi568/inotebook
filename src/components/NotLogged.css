@@ -1,0 +1,39 @@
+.card-height{
+height: 15rem;
+text-align: center;
+box-shadow:10px 10px 42px -8px blue
+}
+.card-img{
+    height: 100%;
+    width: 100%;
+   
+}
+.coursel-img-height{
+    height: 20rem;
+    width: 50%;
+    background: none;
+}
+.card-img-opacity{
+    opacity: 0.1;
+}
+.card-footer{
+    color:rgb(168, 167, 165)
+}
+#carouselExampleCaptions{
+    margin: 3rem 0px;
+    position: relative;
+}
+.carousel-control-prev,.carousel-control-next{
+    position: absolute;
+    top: 20rem;
+}
+.carousel-inner{
+    background-color: rgb(84, 82, 82);
+}
+.card-header{
+    color:rgb(252, 187, 187)
+}
+.hori-line{
+    height: 0.2rem;
+    background-color: bisque;
+}

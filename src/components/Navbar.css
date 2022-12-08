@@ -1,0 +1,37 @@
+.imageColor{
+    color:white;
+    height: 3.2rem;
+    width: 3.2rem;
+    padding:10px;
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+}
+.imageColor:hover{
+    background-color: #474444;
+    border-radius: 50%;
+}
+.dropdown-menu[data-bs-popper] {
+    top: 110%;
+    left: -100px !important;
+}
+.dropdown-menu li{
+    cursor: pointer;
+    height:3rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+ }
+ .dropdown-menu li:hover{
+    background-color: #dcd8d8;
+ }
+ hr{
+margin: 0px !important;
+ }
+.dropdown-menu{
+    padding:0rem;
+}
