@@ -22,7 +22,6 @@ export default function Navbar() {
   }, [auth_Token]);
 
   const fetchUserDetails = () => {
-    console.log("getting", "auth", auth_Token);
     fetch("http://localhost:5000/api/auth/fetchuser", {
       method: "POST",
       headers: {
@@ -32,7 +31,6 @@ export default function Navbar() {
       .then((res) => res.json())
       .then((res) => {
         setUserDetails(res);
-        console.log("userDetails", res, userDetails);
       })
       .catch((err) => console.log(err));
   };
@@ -45,8 +43,8 @@ export default function Navbar() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            Navbar
+          <a className="navbar-brand text-primary fw-bold" href="/">
+            iNoteBook
           </a>
           <button
             className="navbar-toggler"
@@ -107,7 +105,7 @@ export default function Navbar() {
             </div>
             
             {auth_Token && (
-              <div className="dropdown mx-3">
+              <div className="dropdown mr-3">
                 <span
                   className="dropdown-toggle"
                   id="dropdownMenuButton1"

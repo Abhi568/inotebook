@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import NoteState from './context/notes/NoteState';
+
 function App() {
   return (
     <NoteState>
@@ -19,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home></Home>}>
           </Route>
-          <Route path="/about" element={<About />}>
+          <Route path="/about" element={<About></About>}>
           </Route>
         </Routes>
         </div>

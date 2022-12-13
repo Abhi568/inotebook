@@ -14,9 +14,12 @@ import tickSymbol from "../Image/tick.svg";
 export default function AllNotes() {
   let { auth_Token, notes, fetchAllNotes, updateNote, removeNote } =
     useContext(noteContext);
+  let [allNotes, setAllNotes] = useState([...notes]);
+  let originalNotes = [...notes];
   let [isLoading, setIsLoading] = useState(true);
   var [note, setNote] = useState({ title: "", description: "", tag: "" });
   let [toastVisibilty, setToastVisibilty] = useState(false);
+  let [searchText, setSearchText] = useState("");
   let [alertMessage, setAlertMessage] = useState({
     mess: "",
     color: "success",
@@ -33,9 +36,13 @@ export default function AllNotes() {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    setAllNotes(notes);
+  }, [notes]);
+
   const saveChanges = () => {
     updateNote(note, id);
-    setAlertMessage({...alertMessage,mess:"Note updated successfully"})
+    setAlertMessage({ ...alertMessage, mess: "Note updated successfully" });
     setToastVisibilty(true);
     makeToastInvisible();
   };
@@ -46,8 +53,7 @@ export default function AllNotes() {
   };
 
   const deleteNote = () => {
-    setAlertMessage({...alertMessage,mess:"Note deleted successfully"})
-    // console.log('id need to be deleted',id)
+    setAlertMessage({ ...alertMessage, mess: "Note deleted successfully" });
     removeNote(id);
     setToastVisibilty(true);
     makeToastInvisible();
@@ -61,8 +67,16 @@ export default function AllNotes() {
   const makeToastInvisible = () => {
     setTimeout(() => {
       setToastVisibilty(false);
-      // setAlertMessage({ mess: "asasdsdas", color: "success" });
     }, 1500);
+  };
+
+  const filter = (e) => {
+    setSearchText(e.target.value);
+    let filteredData = originalNotes.filter(
+      (note) =>
+        note.tag.includes(e.target.value) || note.title.includes(e.target.value)
+    );
+    setAllNotes(filteredData);
   };
 
   return (
@@ -72,14 +86,6 @@ export default function AllNotes() {
           <AlertMessage alertMessage={alertMessage} />
         </div>
       )}
-      {isLoading && (
-        <Loading
-          heightOfPage="10rem"
-          heightOfSpinner="1.5rem"
-          widthOfSpinner="1.5rem"
-        />
-      )}
-
       <div
         className="modal fade"
         id="exampleModal"
@@ -103,7 +109,7 @@ export default function AllNotes() {
             <div className="modal-body">
               <form id="note-add-form">
                 <div className="mb-3">
-                  <label htmlFor="title" className="col-form-label">
+                  <label htmlFor="title" className="col-form-label required">
                     Title:
                   </label>
                   <input
@@ -127,7 +133,10 @@ export default function AllNotes() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="description" className="col-form-label">
+                  <label
+                    htmlFor="description"
+                    className="col-form-label required"
+                  >
                     Description:
                   </label>
                   <textarea
@@ -190,37 +199,52 @@ export default function AllNotes() {
           </div>
         </div>
       </div>
-      <hr className="my-5" />
-      {!isLoading && (
-        <>
-          <div className="mx-5">
-            <h1 className="fw-bold fs-3 ">Your Notes </h1>
-            <div
-              className="row m-0 all-notes"
-              style={{ width: "100%", paddingLeft: "0px" }}
-            >
-              {notes.map((note) => {
-                return (
-                  <div
-                    key={note._id}
-                    className="col-sm-6 col-md-4 col-lg-3 col-xlg-3"
-                  >
-                    <NotesItems
-                      note={note}
-                      getData={getData}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            {notes.length === 0 && (
-              <div className="container">
+      <hr className="horizontal-line" />
+      <div className="mx-5">
+        <div className="d-flex justify-content-between">
+          <span className="fw-bold fs-3 ml-1">Your Notes </span>
+          <form className="d-flex" role="search">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search By Tag and Description"
+              aria-label="Search"
+              onChange={filter}
+              value={searchText}
+            />
+          </form>
+        </div>
+        {isLoading && (
+          <Loading
+            heightOfPage="10rem"
+            heightOfSpinner="1.5rem"
+            widthOfSpinner="1.5rem"
+          />
+        )}
+        {!isLoading && (
+          <div
+            className="row m-0 all-notes"
+            style={{ width: "100%", paddingLeft: "0px" }}
+          >
+            {allNotes.map((note) => {
+              return (
+                <div
+                  key={note._id}
+                  className="col-sm-6 col-md-4 col-lg-3 col-xlg-3"
+                >
+                  <NotesItems note={note} getData={getData} />
+                </div>
+              );
+            })}
+
+            {allNotes.length === 0 && (
+              <div className="image-container">
                 <img src={noNotes} alt="no notes found" />
               </div>
             )}
           </div>
-        </>
-      )}
+        )}
+      </div>
     </>
   );
 }

@@ -35,3 +35,10 @@ margin: 0px !important;
 .dropdown-menu{
     padding:0rem;
 }
+
+@media screen  and (max-width:992px) {
+    .dropdown-menu[data-bs-popper] {
+        top: 110%;
+        left: 0px !important;
+    }
+}

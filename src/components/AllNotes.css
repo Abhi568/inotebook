@@ -1,16 +1,27 @@
-.all-notes .container
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    border:1px solid gray;
-    background-color: antiquewhite;
-} 
- .all-notes .container img{
-    border:1px solid red;
-    margin:2rem;
-    height: 20rem;
-    width: 50%;
-    
+.all-notes .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  border: 1px solid gray;
+  background-color: antiquewhite;
+}
+.image-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.image-container img {
+  text-align: center;
+  margin: 2rem;
+  height: 10rem !important;
+  width: 20% !important;
+}
+img :hover{
+ cursor: none !important;
+}
+.horizontal-line {
+  margin: 2rem auto !important ;
+  border-style: double;
+  border-width: 2px;
 }

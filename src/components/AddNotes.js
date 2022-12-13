@@ -21,8 +21,8 @@ export default function AddNotes() {
     setToastVisibilty(true);
     addItems(note);
     makeToastInvisible();
-    let form = document.getElementById("form")
-    form.reset()
+    let form = document.getElementById("form");
+    form.reset();
   }
   const setValue = (e) => {
     setNote({ ...note, [e.target.id]: e.target.value });
@@ -41,45 +41,53 @@ export default function AddNotes() {
           <AlertMessage alertMessage={alertMessage} />
         </div>
       )}
-      <span className="fw-bolder fs-2">Add Your Notes</span>
+      <div className="title">
+        <p className="fw-bolder fs-2 mt-2">Add Your Notes</p>
+      </div>
       <form onSubmit={addItem} id="form">
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">
+          <label htmlFor="title" className="form-label required">
             Title
           </label>
           <input
             onChange={setValue}
-            placeholder="Title"
+            placeholder="Enter title"
             type="text"
             className="form-control"
             id="title"
             aria-describedby="title"
           />
+          <span className="form-text">
+          Enter the title that has a minimum length of 3
+          </span>
         </div>
         <div className="mb-3">
           <label htmlFor="tag" className="form-label">
             Tag
           </label>
           <input
+          type='text'
             onChange={setValue}
             placeholder="Tag"
-            type="title"
             className="form-control"
             id="tag"
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">
+          <label htmlFor="description" className="form-label required">
             Description
           </label>
           <textarea
             onChange={setValue}
             style={{ height: "100px" }}
-            placeholder="Description"
+            placeholder="Enter Description"
             type="text"
             className="form-control"
             id="description"
           />
+           <span className="form-text">
+           Enter the description that has a minimum length of 5
+          </span>
         </div>
         <button
           type="submit"

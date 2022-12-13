@@ -4,6 +4,7 @@ import noteContext from "../context/notes/noteContext.js";
 import { useContext } from "react";
 import "./Login.css";
 import AlertMessage from "./AlertMessage.js";
+
 export default function Login() {
   let { settingAuthToken } = useContext(noteContext);
   let host = "http://localhost:5000";
@@ -27,30 +28,37 @@ export default function Login() {
       setAlertMessage({ mess: "", color: "" });
     }, 1500);
   };
+
   const logIn = (e) => {
     e.preventDefault();
-    fetch(`${host}/api/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        
-        if (!res.err) {
-          setAlertMessage({mess: "LoggedIn Successfully",
-            color: "success",
-          });
-          localStorage.setItem("auth-token", JSON.stringify(res));
-          settingAuthToken();
-        } else {
-          setAlertMessage({ mess: res.err, color: "danger" });
-        }
-        setToastVisibilty(true);
+    let regexForEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    if (credentials.emailID.match(regexForEmail)) {
+      fetch(`${host}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(credentials),
       })
-      .catch((err) => console.log("Some Error occured while Login",err));
+        .then((res) => res.json())
+        .then((res) => {
+          if (!res.err) {
+            setAlertMessage({
+              mess: "LoggedIn Successfully",
+              color: "success",
+            });
+            localStorage.setItem("auth-token", JSON.stringify(res));
+            settingAuthToken();
+          } else {
+            setAlertMessage({ mess: res.err, color: "danger" });
+          }
+          setToastVisibilty(true);
+        })
+        .catch((err) => console.log("Some Error occured while Login", err));
+    } else {
+      setToastVisibilty(true);
+      setAlertMessage({ mess: "Please enter a valid email", color: "danger" });
+    }
     setCredentials({
       emailID: "",
       password: "",
@@ -86,11 +94,15 @@ export default function Login() {
         <div className="offcanvas-body">
           <form onSubmit={logIn}>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label"
+                id="email"
+              >
                 Email address
               </label>
               <input
-                type="email"
+                placeholder="Enter  Email"
                 className="form-control"
                 id="emailID"
                 aria-describedby="emailHelp"
@@ -102,10 +114,15 @@ export default function Login() {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
+              <label
+                htmlFor="exampleInputPassword1"
+                className="form-label"
+                id="password"
+              >
                 Password
               </label>
               <input
+                placeholder="Enter Password"
                 type="password"
                 className="form-control"
                 id="password"
@@ -114,7 +131,9 @@ export default function Login() {
               />
             </div>
             <button
-              disabled={!(credentials.emailID!=="" && credentials.password!=="")}
+              disabled={
+                !(credentials.emailID !== "" && credentials.password !== "")
+              }
               type="submit"
               className="btn btn-primary"
               data-bs-dismiss="offcanvas"

@@ -14,7 +14,7 @@ route.post(
         //Validation for the fields,
         body("emailID", "Please Enter a valid EmailID").isEmail(),
         body("name", "Please Enter a Valid Name").isString(),
-        body("name", "Name is of minumum 5 Length").isLength({ min: 5 }),
+        body("name", "Name is of minumum 5 Length").isLength({ min: 2 }),
         body("password", "Length of Password should not less than 5").isLength({
             min: 5,
         }),
@@ -42,7 +42,7 @@ route.post(
                     id: useCreated._id,
                 },
             };
-            console.log('id',data)
+            // console.log('id',data)
             var authToken = jwt.sign(data, SECRET_KEY);
             res.json({ authToken });
         } catch (error) {
@@ -52,7 +52,7 @@ route.post(
             }
             // Some Other Errors are Occured
             else {
-                res.status(500).json({ error: "Something Went Wrong!, We will fix soon :-)" });
+                res.status(500).json({ Error: "Something Went Wrong!, We will fix soon :-)" });
             }
         }
     }

@@ -1,6 +1,6 @@
 img {
-  height: 2rem;
-  width: 2rem;
+  height: 1.9rem;
+  width: 1.9rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -13,7 +13,7 @@ img:hover {
 
 .cross-box,
 .check-box {
-  padding: 0.2rem !important;
+  padding: 0rem !important;
   border-radius: 50%;
 }
 .cross-box {
@@ -54,14 +54,25 @@ img:hover {
   width: 30%;
 }
 .tag {
+  position: relative;
+  text-align: center;
+  width: 50px;
+  float: right;
   font-size: 0.7rem;
+  right: -12px;
   font-weight: 700;
-  position: absolute;
-  right: -0.5rem;
-  top: -0.5rem;
+  bottom: -37px;
+  z-index: 1000;
   background: rgb(232, 227, 227);
   padding: 0.2rem;
   border-radius: 1rem;
+}
+.card{
+  height: 10rem;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space: wrap; 
+  border:2px solid rgb(220, 220, 220);
 }
 .card-title {
   max-width: 70%;

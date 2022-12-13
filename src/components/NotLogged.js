@@ -20,7 +20,7 @@ export default function NotLogged() {
               and secrets.
             </p>
           </div>
-          <div className="card-footer fs-4 fw-semibold">
+          <div className="card-footer fs-4 fw-semibold pt-0">
             Access your notes and secrets whenever you want.
           </div>
         </div>
@@ -29,7 +29,7 @@ export default function NotLogged() {
         id="carouselExampleCaptions"
         className="carousel slide"
         data-bs-ride="false"
-        style={{border:'1px solid red'}}
+        style={{ border: "1px solid red" }}
       >
         <div className="carousel-indicators">
           <button
@@ -57,13 +57,16 @@ export default function NotLogged() {
           <div className="carousel-item active">
             <img
               src="http://www.codlrc.org/sites/default/files/staff/u165/paper-clipart-boy-6.png"
-              className="d-block coursel-img-height"
+              className="d-block coursel-img-height "
               alt="..."
             />
-            <div className="carousel-caption d-none d-md-block" style={{float:"right"}}>
-              <h5>First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
+
+            <div className="carousel-caption d-none d-md-block ">
+              <h5 className="text-center fw-bold mb-5 card-header">
+                No Need Of NoteBook
+              </h5>
+              <p className="fs-3 fw-semibold">
+                Make use Of iNoteBook, forget the diaries, books, etc to write.
               </p>
             </div>
           </div>
@@ -74,13 +77,14 @@ export default function NotLogged() {
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
+              <h5 className="card-header mb-5">Lighten Your Pocket Today</h5>
+              <p className="fs-3 fw-semibold">
+                No need to carry extra books, notes, diaries, etc to remember
+                everything important notes.{" "}
               </p>
             </div>
           </div>
-          </div>
+        </div>
       </div>
       <button
         className="carousel-control-prev"

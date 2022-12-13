@@ -1,3 +1,15 @@
 .add-notes{
-    margin-top:100px;
+    margin-top:4rem;
+}
+.required-field{
+    position: absolute;
+}
+.title{
+    padding-top: 4rem;
+}
+.required::after{
+    content: "*";
+     color:red;
+     font-size: large;
+     font-weight: bold;
 }
